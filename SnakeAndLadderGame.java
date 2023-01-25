@@ -1,32 +1,61 @@
 package com.bridgelabz.secondpack;
+
 import java.util.Scanner;
 import java.util.Random;
+
 public class SnakeAndLadderGame {
-public static void main(String[] args) {
-	Random rand=new Random();
-	int randomNum=rand.nextInt(6)+1;
-	int position;
-	Scanner sc=new Scanner(System.in);
-	//System.out.println("Press 1 to continue");
-	//int num=sc.nextInt();
-	//while(num==1) {
-	for(position=0;position<=100;position++) {
-	System.out.println("Dice is rolled and Dice number is "+randomNum);
-	position=randomNum+position;
-	if(position==7) {
-		position=36;//ladder from position 7 to 36
-		System.out.println("new position is "+position);
-		System.out.println("Press 1 to continue");
-		int num=sc.nextInt();
-		if(num==1) {
-			//System.out.println("Dice is rolling");
-			break;
+	public static void main(String[] args) {
+		int x, position = 0, diceCount = 0;
+		Random rand = new Random();
+		{
+			while (position < 100) {
+				System.out.println("Dice is rolled and it is ");
+				int randomNum = rand.nextInt(6) + 1;// 1-6
+				System.out.println(randomNum);
+				diceCount++;
+				position = randomNum + position;
+				if (position == 7) {
+					position = position + randomNum;// ladder from position 7
+					System.out.println("wow it is a ladder " + "\n");
+					System.out.println("new position is " + position);
+				} else if (position == 68) {
+					position = position + randomNum; // ladder from position 68
+					System.out.println("wow it is a ladder....! " + "\n");
+					System.out.println("new position is " + position);
+				} else if (position == 99) {
+					position = position - randomNum; // snake from position 99
+					System.err.println("oh it is a snake...! " + "\n");
+					System.out.println("new position is " + position);
+				} else if (position == 54) {
+					position = position - randomNum; // snake from position 54
+					System.err.println("oh it is a snake...! " + "\n");
+					System.out.println("new position is " + position);
+				} else {
+					System.out.println("new position is " + position);
+				}
+				x = position;
+				if (position == 100) {
+					System.err.println("Congrats you win...!");
+					System.out.println(diceCount + " times the Dice is Rolled...!");
+					System.exit(0);
+				} else
+					System.out.println('\n' + "Press 1 to continue");
+				Scanner sc = new Scanner(System.in);
+				int num = sc.nextInt();
+				if (num == 1) {
+					System.out.println("Dice is rolling");
+					System.err.println(".\n" + ".\n");
+				} else {
+					System.err.println("wrong keyword try again...!");
+					System.err.println(".\n" + ".\n");
+					System.exit(0);
+				}
+				// while (position>100)
+				// position=x;
+				// continue;
+			}
+			System.err.println("Congrats you win...!");
+			System.out.println(diceCount + " times the Dice is Rolled...!");
 		}
-	}else if(position==68){
-	position=92;  //ladder from position 68 to 92
-	}else if(position==99){
-		position=77;  //snake from position 99 to 77
-	}else if(position==54){
-		position=19;  //snake from position 54 to 19
-}}
-}}
+	}
+}
